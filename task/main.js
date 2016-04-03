@@ -2,6 +2,7 @@ var read = require('./read');
 var save = require('./save');
 var uri = 'http://top.baidu.com/category?c=10&fr=topcategory_c10';
 var async = require('async');
+var debug = require('debug')('crawl:main');
 //串行执行
 var categories = [];
 var articles= [];
@@ -34,5 +35,6 @@ async.series([
     console.log(err);
     else
     console.log('所有的任务完成了');
+    debug('所有的任务完成了');
 })
 

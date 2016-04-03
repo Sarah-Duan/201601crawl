@@ -2,6 +2,7 @@
 var request = require('request');//拉取网页内容
 var cheerio = require('cheerio');//实现jquery功能
 var iconv = require('iconv-lite');//把GBK转成UTF8
+var debug = require('debug')('crawl:read');
 /**
  * res 响应对象
  * body 响应体
@@ -26,6 +27,7 @@ exports.category = function(url,callback){
             }
                 var params = regParams(item.url);
                 item.id = params.b;
+               debug('读取分类',JSON.stringify(item));
                 items.push(item);
         });
         callback(null,items);
@@ -62,6 +64,7 @@ exports.article = function(url,cid,callback){
                 cid:cid
             }
             if(item.name != 'search'){
+                debug('读取文章',JSON.stringify(item));
                 items.push(item);
             }
         });
